@@ -1,0 +1,152 @@
+//fix centos-stream9_kernel5.14
+
+// core.c:2077
+#if LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0)
+    //fix centos-stream9_kernel5.14
+    netif_napi_add(&rtwdev->netdev, &rtwdev->napi,
+                    rtwdev->hci.ops->napi_poll);
+#else
+
+#endif 
+
+--------------------------------------------------
+
+/**
+ * ieee80211_nullfunc_get - retrieve a nullfunc template
+ * @hw: pointer obtained from ieee80211_alloc_hw().
+ * @vif: &struct ieee80211_vif pointer from the add_interface callback.
+ * @link_id: If the vif is an MLD, get a frame with the link addresses
+ *	for the given link ID. For a link_id < 0 you get a frame with
+ *	MLD addresses, however useful that might be.
+ * @qos_ok: QoS NDP is acceptable to the caller, this should be set
+ *	if at all possible
+ *
+ * Creates a Nullfunc template which can, for example, uploaded to
+ * hardware. The template must be updated after association so that correct
+ * BSSID and address is used.
+ *
+ * If @qos_ndp is set and the association is to an AP with QoS/WMM, the
+ * returned packet will be QoS NDP.
+ *
+ * Note: Caller (or hardware) is responsible for setting the
+ * &IEEE80211_FCTL_PM bit as well as Duration and Sequence Control fields.
+ *
+ * Return: The nullfunc template. %NULL on error.
+ */
+struct sk_buff *ieee80211_nullfunc_get(struct ieee80211_hw *hw,
+				       struct ieee80211_vif *vif,
+				       int link_id, bool qos_ok);
+
+
+// core.c:2464
+#if LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0)
+    //fix centos-stream9_kernel5.14
+    skb = ieee80211_nullfunc_get(rtwdev->hw, vif, -1, qos);
+#else
+
+#endif 
+
+--------------------------------------------------
+// core.h:5040
+#if LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0)
+    //fix centos-stream9_kernel5.14
+    if (!vif->bss_conf.he_support || !vif->cfg.assoc)
+#else
+
+#endif 
+
+--------------------------------------------------
+// core.h:5166
+#if LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0)
+    //fix centos-stream9_kernel5.14
+        if ((sta->deflink.vht_cap.cap & IEEE80211_VHT_CAP_MU_BEAMFORMER_CAPABLE) ||
+             (sta->deflink.vht_cap.cap & IEEE80211_VHT_CAP_SU_BEAMFORMER_CAPABLE) ||
+             (sta->deflink.he_cap.he_cap_elem.phy_cap_info[3] &
+                         IEEE80211_HE_PHY_CAP3_SU_BEAMFORMER) ||
+             (sta->deflink.he_cap.he_cap_elem.phy_cap_info[4] &
+                         IEEE80211_HE_PHY_CAP4_MU_BEAMFORMER))
+                 return true;
+
+#else
+
+#endif 
+
+--------------------------------------------------
+// core.c:440
+#if LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0)
+    //fix centos-stream9_kernel5.14
+    4 << sta->deflink.ht_cap.ampdu_factor) - 1);
+#else
+
+#endif 
+
+--------------------------------------------------
+// core.c
+#if LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0)
+    //fix centos-stream9_kernel5.14
+    desc_info->ampdu_density = sta->deflink.ht_cap.ampdu_density;
+#else
+
+#endif 
+
+--------------------------------------------------
+// core.c:672
+#if LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0)
+    //fix centos-stream9_kernel5.14
+    if (!sta || !sta->deflink.he_cap.has_he)
+#else
+
+#endif 
+
+--------------------------------------------------
+// core.c
+#if LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0)
+    //fix centos-stream9_kernel5.14
+    if (!sta || !sta->deflink.supp_rates[chan->band_type])
+#else
+
+#endif 
+
+--------------------------------------------------
+// core.c
+#if LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0)
+    //fix centos-stream9_kernel5.14
+    return __ffs(sta->deflink.supp_rates[chan->band_type]) + lowest_rate;
+#else
+    
+#endif 
+
+--------------------------------------------------
+// core.c:2479
+#if LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0)
+    //fix centos-stream9_kernel5.14
+    if (vif->type != NL80211_IFTYPE_STATION || !vif->cfg.assoc)
+#else
+    
+#endif 
+
+--------------------------------------------------
+// mac80211.c:417
+#if LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0)
+    //fix centos-stream9_kernel5.14
+    if (vif->cfg.assoc) {
+#else
+    
+#endif 
+
+---------------------------------------------------------------------------------------------------
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)) 
+|| (LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0))
+
+
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5,19,0)) 
+&& (LINUX_VERSION_CODE != KERNEL_VERSION(5, 14, 0))
+
+KERNEL_VERSION(5, 19, 0)
+
+--------------------------------------------------
+
+// Makefile
+EXTRA_CFLAGS += -Wno-error
+KERNEL_CFLAGS += -w
+

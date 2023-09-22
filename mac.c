@@ -5226,7 +5226,7 @@ static int rtw89_mac_set_csi_para_reg(struct rtw89_dev *rtwdev,
 	u8 nc = 1, nr = 3, ng = 0, cb = 1, cs = 1, ldpc_en = 1, stbc_en = 1;
 	u8 port_sel = rtwvif->port;
 	u8 sound_dim = 3, t;
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 0)
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 0)) && (LINUX_VERSION_CODE != KERNEL_VERSION(5, 14, 0))
 	u8 *phy_cap = sta->he_cap.he_cap_elem.phy_cap_info;
 #else
 	u8 *phy_cap = sta->deflink.he_cap.he_cap_elem.phy_cap_info;
@@ -5247,7 +5247,7 @@ static int rtw89_mac_set_csi_para_reg(struct rtw89_dev *rtwdev,
 			      phy_cap[5]);
 		sound_dim = min(sound_dim, t);
 	}
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 0)
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 0)) && (LINUX_VERSION_CODE != KERNEL_VERSION(5, 14, 0))
 	if ((sta->vht_cap.cap & IEEE80211_VHT_CAP_MU_BEAMFORMER_CAPABLE) ||
 	    (sta->vht_cap.cap & IEEE80211_VHT_CAP_SU_BEAMFORMER_CAPABLE)) {
 		ldpc_en &= !!(sta->vht_cap.cap & IEEE80211_VHT_CAP_RXLDPC);
@@ -5302,7 +5302,7 @@ static int rtw89_mac_csi_rrsc(struct rtw89_dev *rtwdev,
 	if (ret)
 		return ret;
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 0)
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 0)) && (LINUX_VERSION_CODE != KERNEL_VERSION(5, 14, 0))
 	if (sta->he_cap.has_he) {
 #else
 	if (sta->deflink.he_cap.has_he) {
@@ -5311,7 +5311,7 @@ static int rtw89_mac_csi_rrsc(struct rtw89_dev *rtwdev,
 			 BIT(RTW89_MAC_BF_RRSC_HE_MSC3) |
 			 BIT(RTW89_MAC_BF_RRSC_HE_MSC5));
 	}
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 0)
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 0)) && (LINUX_VERSION_CODE != KERNEL_VERSION(5, 14, 0))
 	if (sta->vht_cap.vht_supported) {
 #else
 	if (sta->deflink.vht_cap.vht_supported) {
@@ -5320,7 +5320,7 @@ static int rtw89_mac_csi_rrsc(struct rtw89_dev *rtwdev,
 			 BIT(RTW89_MAC_BF_RRSC_VHT_MSC3) |
 			 BIT(RTW89_MAC_BF_RRSC_VHT_MSC5));
 	}
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 0)
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 0)) && (LINUX_VERSION_CODE != KERNEL_VERSION(5, 14, 0))
 	if (sta->ht_cap.ht_supported) {
 #else
 	if (sta->deflink.ht_cap.ht_supported) {

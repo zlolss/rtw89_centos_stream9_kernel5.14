@@ -271,7 +271,7 @@ void rtw89_recalc_lps(struct rtw89_dev *rtwdev)
 		found_vif = vif;
 	}
 
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0))
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0)) || (LINUX_VERSION_CODE == KERNEL_VERSION(5, 14, 0))
 	if (count == 1 && found_vif->cfg.ps) {
 		rtwdev->lps_enabled = true;
 	} else {
