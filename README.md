@@ -1,3 +1,10 @@
+- 2023-09-23 修复了在centos-stream9, kernel5.14.0上的编译错误
+
+ 使用前需要确认系统和内核版本一致
+
+ 存在的问题：hostapd ASC超时，信道定义存在问题；作为AP使用时2.4g和5g模式均只支持20MHZ带宽
+
+
 # rtw89 📡🐧
 ### A repo for the newest Realtek rtlwifi codes.
 
